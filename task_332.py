@@ -1,22 +1,31 @@
-from math import sqrt
+from math import sqrt, ceil
 
 def main():
-    number = int(input('Enter the number: '))
-    for k in range(1, 5):
-        decompose = to_sum_of_squares(number, k)
-        if decompose:
-            for i, n in enumerate(decompose):
-                decompose[i] = int(sqrt(n))
-            print(f'x = {decompose[0]}, y = {decompose[1]}, z = {decompose[2]}, t = {decompose[3]}')
-            break
-
-def to_sum_of_squares(n:int, k:'squares count:int')->list:
-    if (n < 0) or (k <= 0):
-        return []
-    maximum = round(sqrt(n))
-    if n == maximum*maximum:
-        return [n]
-    for c in range(1, maximum+1):
-        decomposition = to_sum_of_squares((n-c*c), k-1)
-        if decomposition:
-            return [c*c]+decomposition
+    n = int(input())
+    sqrt_n = int(sqrt(n))
+    if n == sqrt_n*sqrt_n:
+        return f'x = 0, y = 0, z = 0, t = {sqrt_n}'
+    res = []
+    Y = x = ceil(sqrt(n)/2) # the smallest integer greater than or equal to N
+    x_squared = x**2
+    while x_squared <= n:
+        while Y and (Y-1)*(Y-1)*3 >= n - x_squared:
+            Y -= 1
+        y = Z = Y
+        y_squared = y**2
+        while (y <= x) and (x_squared + y_squared <= n):
+            while Z and (Z-1)*(Z-1)*2 >= n - x_squared - y_squared:
+                Z -= 1
+            z = t = Z
+            z_squared = z**2
+            while (z <= y) and (x_squared + y_squared + z_squared <= n):
+                while t**2 > n - x_squared - y_squared - z_squared:
+                    t -= 1
+                if x_squared + y_squared + z_squared + t**2 == n:
+                    return f'x = {x}, y = {y}, z = {z}, t = {t}'
+                z += 1
+                z_squared = z*z
+            y += 1
+            y_squared = y*y
+        x += 1
+        x_squared = x*x
