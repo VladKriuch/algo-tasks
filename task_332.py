@@ -1,3 +1,4 @@
+# inspired by http://uneex.ru/FrBrGeorge/News/2017-02-01
 from math import sqrt, ceil
 
 def main():
@@ -5,7 +6,6 @@ def main():
     sqrt_n = int(sqrt(n))
     if n == sqrt_n*sqrt_n:
         return f'x = 0, y = 0, z = 0, t = {sqrt_n}'
-    res = []
     Y = x = ceil(sqrt(n)/2) # the smallest integer greater than or equal to N
     x_squared = x**2
     while x_squared <= n:
