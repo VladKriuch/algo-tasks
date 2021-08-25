@@ -1,10 +1,10 @@
 # inspired by http://uneex.ru/FrBrGeorge/News/2017-02-01
 from math import sqrt, ceil
 
-def main():
+def task_332():
     n = int(input("Enter any natural number: "))
     try:
-        if not str_num.isdigit():
+        if not n.isdigit():
             raise ValueError
         sqrt_n = int(sqrt(n))
         if n == sqrt_n*sqrt_n:
