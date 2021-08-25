@@ -2,7 +2,7 @@
 from math import sqrt, ceil
 
 def main():
-    n = int(input())
+    n = int(input("Enter any natural number: "))
     try:
         if not str_num.isdigit():
             raise ValueError
